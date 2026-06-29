@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5,000 km solo across Europe — for World Bicycle Relief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,800;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4ede0;--paper-deep:#ebe1cf;--card:#faf5ea;--ink:#1f1a14;--ink-soft:#574d40;
+    --rust:#b54a2c;--rust-deep:#8a3318;--olive:#5a6243;--gold:#c08a2a;--gold-bright:#d9a23a;
+    --line:#d6c9b0;--line-soft:#e3d9c6;--maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background-image:radial-gradient(circle at 18% 8%, rgba(181,74,44,.05) 0%, transparent 42%),radial-gradient(circle at 82% 82%, rgba(90,98,67,.06) 0%, transparent 50%);}
+  body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.10 0 0 0 0 0.08 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:.5;mix-blend-mode:multiply;}
+  ::selection{background:var(--rust);color:var(--paper)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:2}
+  h1,h2,h3{font-family:'Fraunces',serif;line-height:1.04;font-weight:600;letter-spacing:-.01em}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--rust)}
+
+  nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);position:relative;z-index:2}
+  nav .brand{font-family:'Fraunces',serif;font-weight:600;font-size:18px}
+  nav .brand b{color:var(--rust)}
+  nav .wbr{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+
+  .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:72px 0 80px;border-bottom:1px solid var(--line)}
+  .hero h1{font-size:clamp(46px,7.2vw,88px);font-weight:800}
+  .hero h1 em{font-style:italic;color:var(--rust);font-weight:600}
+  .hero .sub{font-size:clamp(17px,1.5vw,20px);color:var(--ink-soft);max-width:44ch;margin:24px 0 0}
+  .hero .sub b{color:var(--ink);font-weight:600}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.03em;padding:15px 26px;text-decoration:none;border-radius:2px;border:1px solid transparent;transition:transform .15s ease,background .15s ease,color .15s ease;cursor:pointer}
+  .btn-primary{background:var(--rust);color:var(--paper);font-weight:500}
+  .btn-primary:hover{background:var(--rust-deep);transform:translateY(-2px)}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper)}
+
+  .hero-art{position:relative;align-self:stretch;min-height:380px;border:1px solid var(--line);border-radius:3px;background:linear-gradient(160deg,var(--card),var(--paper-deep));overflow:hidden}
+  .hero-art svg{position:absolute;inset:0;width:100%;height:100%}
+  .route{fill:none;stroke:var(--rust);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:1500;stroke-dashoffset:1500;animation:draw 3.6s cubic-bezier(.5,0,.2,1) .5s forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  .terrain{fill:none;stroke:var(--olive);stroke-width:1.1;opacity:.4}
+  .pt{fill:var(--card);stroke:var(--ink);stroke-width:1.6}
+  .pt-end{fill:var(--rust);stroke:var(--rust-deep)}
+  .art-tag{position:absolute;left:24px;bottom:20px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .art-tag b{color:var(--rust)}
+
+  section{padding:84px 0;border-bottom:1px solid var(--line)}
+  .sec-head{margin-bottom:44px}
+  .sec-head .idx{font-family:'JetBrains Mono',monospace;color:var(--rust);font-size:13px;display:block;margin-bottom:10px}
+  .sec-head h2{font-size:clamp(28px,3.6vw,44px)}
+  .lead{max-width:60ch;color:var(--ink-soft);font-size:17px}
+  .lead b{color:var(--ink);font-weight:600}
+
+  .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .stat{background:var(--card);padding:30px 26px}
+  .stat .k{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .stat .v{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(30px,4vw,46px);line-height:1;margin:12px 0 4px;font-variant-numeric:tabular-nums}
+  .stat.eur .v{color:var(--rust)}
+  .stat.km .v{color:var(--olive)}
+  .stat.bikes .v{color:var(--gold)}
+  .stat .s{font-size:12.5px;color:var(--ink-soft)}
+  .progress{margin-top:30px}
+  .bar-track{height:10px;background:var(--paper-deep);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+  .bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-bright),var(--rust));transition:width 1.4s cubic-bezier(.4,0,.1,1)}
+  .bar-meta{display:flex;justify-content:space-between;margin-top:11px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft)}
+  .updated{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft)}
+  .goal-note{margin-top:18px;font-size:14px;color:var(--ink-soft);font-style:italic;border-left:2px solid var(--gold);padding-left:14px}
+
+  .ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:14px}
+  .rung{background:var(--card);padding:22px 16px;text-align:center}
+  .rung .band{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);letter-spacing:.06em}
+  .rung .rate{font-family:'Fraunces',serif;font-size:30px;font-weight:600;color:var(--rust);margin:8px 0 2px}
+  .rung .rate small{font-size:14px;color:var(--ink-soft);font-weight:400}
+  .rung .cost{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--olive)}
+  .ladder-note{font-size:13.5px;color:var(--ink-soft);font-style:italic}
+
+  .calc{margin-top:40px;background:var(--card);border:1px solid var(--line);border-radius:3px;padding:34px 32px}
+  .calc h3{font-size:22px;margin-bottom:6px}
+  .calc .calc-sub{font-size:14px;color:var(--ink-soft);margin-bottom:26px}
+  .calc-readout{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:26px}
+  .calc-readout .cell .ck{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .calc-readout .cell .cv{font-family:'Fraunces',serif;font-size:clamp(26px,3.4vw,38px);font-weight:600;line-height:1.05;margin-top:6px;font-variant-numeric:tabular-nums}
+  .calc-readout .cell.a .cv{color:var(--rust)}
+  .calc-readout .cell.b .cv{color:var(--olive)}
+  .calc-readout .cell.c .cv{color:var(--gold)}
+  .slider-wrap label{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);display:flex;justify-content:space-between;margin-bottom:10px}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;background:var(--paper-deep);outline:none;border:1px solid var(--line)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--rust);cursor:pointer;border:3px solid var(--card);box-shadow:0 1px 4px rgba(0,0,0,.2)}
+  input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--rust);cursor:pointer;border:3px solid var(--card)}
+  .tier-flag{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);text-align:center}
+  .tier-flag b{color:var(--rust)}
+
+  .rules{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+  .rule{background:var(--card);padding:30px 28px}
+  .rule .rn{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);margin-bottom:12px}
+  .rule h3{font-size:19px;margin-bottom:9px}
+  .rule p{color:var(--ink-soft);font-size:14.5px}
+
+  .disc{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+  .disc h2{font-size:clamp(26px,3.2vw,40px);margin-bottom:18px}
+  .disc p{color:var(--ink-soft);max-width:46ch;margin-bottom:14px}
+  .map-card{border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--card);min-height:340px;display:flex;flex-direction:column}
+  .map-card iframe{width:100%;flex:1;border:0;min-height:300px}
+  .map-ph{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 28px;gap:14px}
+  .map-ph .mp-ic{width:46px;height:46px;border-radius:50%;border:2px solid var(--rust);display:flex;align-items:center;justify-content:center;color:var(--rust);font-family:'JetBrains Mono',monospace;font-size:18px}
+  .map-ph .mp-t{font-family:'Fraunces',serif;font-size:20px;font-weight:600}
+  .map-ph .mp-s{font-size:13.5px;color:var(--ink-soft);max-width:30ch}
+  .map-foot{padding:14px 20px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center}
+  .map-foot a{color:var(--rust);text-decoration:none}
+
+  .impact{display:grid;grid-template-columns:.85fr 1.15fr;gap:52px;align-items:center}
+  .impact .figure{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(58px,9vw,116px);line-height:.9;color:var(--rust)}
+  .impact .figure span{display:block;font-family:'JetBrains Mono',monospace;font-weight:400;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:18px}
+  .impact p{color:var(--ink-soft);font-size:16.5px;margin-bottom:16px;max-width:52ch}
+  .impact b{color:var(--ink);font-weight:600}
+
+  .donate{text-align:center}
+  .donate-card{max-width:600px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:3px;padding:44px 38px}
+  .donate-card .eyebrow{display:block;margin-bottom:14px}
+  .donate-card h2{font-size:clamp(26px,3vw,38px);margin-bottom:8px}
+  .donate-card .rate-line{font-family:'JetBrains Mono',monospace;color:var(--olive);font-size:13.5px;margin-bottom:28px}
+  .presets{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+  .preset{background:transparent;border:1px solid var(--line);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:15px;padding:15px 0;cursor:pointer;border-radius:2px;transition:all .14s ease}
+  .preset .pk{display:block;font-size:10.5px;color:var(--ink-soft);margin-top:4px}
+  .preset:hover{border-color:var(--rust)}
+  .preset.active{background:var(--rust);color:var(--paper);border-color:var(--rust)}
+  .preset.active .pk{color:var(--paper);opacity:.8}
+  .custom-row{display:flex;gap:10px;margin-bottom:22px}
+  .custom-row .cur{display:flex;align-items:center;font-family:'JetBrains Mono',monospace;color:var(--ink-soft);padding:0 6px;border:1px solid var(--line);border-right:0;border-radius:2px 0 0 2px}
+  .custom-row input{flex:1;background:var(--paper);border:1px solid var(--line);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:16px;padding:14px 14px;border-radius:0 2px 2px 0}
+  .custom-row input:focus{outline:none;border-color:var(--rust)}
+  .donate-summary{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink-soft);margin-bottom:24px;min-height:20px}
+  .donate-summary b{color:var(--ink)}
+  .donate-card .btn-primary{width:100%;justify-content:center;font-size:14px;padding:17px}
+  .donate-foot{font-size:12.5px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+
+  footer{padding:54px 0 70px;text-align:center}
+  footer .sig{font-family:'Fraunces',serif;font-size:24px;font-weight:600}
+  footer .meta{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink-soft);margin-top:10px;letter-spacing:.06em}
+  footer .meta b{color:var(--rust)}
+
+  @media(max-width:880px){
+    .hero{grid-template-columns:1fr;gap:36px}.hero-art{min-height:300px}
+    .stat-row{grid-template-columns:1fr 1fr}.ladder{grid-template-columns:1fr 1fr 1fr}
+    .calc-readout{grid-template-columns:1fr}.rules,.disc,.impact{grid-template-columns:1fr;gap:28px}
+  }
+  @media(max-width:520px){.stat-row,.ladder{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){.route{animation:none;stroke-dashoffset:0}.bar-fill{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <span class="brand">A ride for <b>World Bicycle Relief</b></span>
+    <span class="wbr">Solo · Self-supported · Summer 2026</span>
+  </nav>
+</div>
+
+<header class="wrap">
+  <div class="hero">
+    <div>
+      <span class="eyebrow">One bike · No phone · Nine countries</span>
+      <h1 style="margin-top:18px"><em>5,000 km</em><br>solo across Europe.</h1>
+      <p class="sub">One rider, one loaded gravel bike, no phone — riding the length of a continent
+      this summer. Every euro you give is kilometres I commit to ride, and <b>all of it goes
+      straight to World Bicycle Relief.</b></p>
+      <div class="hero-cta">
+        <a href="#donate" class="btn btn-primary">Donate to World Bicycle Relief</a>
+        <a href="#how" class="btn btn-ghost">How it works</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 420 460" preserveAspectRatio="xMidYMid meet">
+        <path class="terrain" d="M30 150 L80 120 L120 160 L170 110 L220 165 L270 120 L330 168 L390 130"/>
+        <path class="terrain" d="M30 250 L90 220 L140 262 L200 210 L260 265 L320 215 L390 255"/>
+        <path class="terrain" d="M30 350 L70 330 L130 360 L190 322 L250 362 L310 326 L390 356"/>
+        <path class="route" d="M300 36 C280 70, 250 78, 262 112 C274 146, 198 156, 190 196 C184 228, 220 244, 200 286 C182 322, 120 330, 138 372 C150 402, 96 414, 110 442"/>
+        <circle class="pt" cx="300" cy="36" r="6"/>
+        <circle class="pt pt-end" cx="110" cy="442" r="7"/>
+      </svg>
+      <div class="art-tag"><b>Start:</b> my front door &nbsp;·&nbsp; <b>Finish:</b> you'll see when I get there</div>
+    </div>
+  </div>
+</header>
+
+<section id="ledger">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">01 / The ledger</span><h2>Where it stands</h2></div>
+    <div class="stat-row">
+      <div class="stat eur"><div class="k">Donated</div><div class="v" id="s-eur">€0</div><div class="s">to World Bicycle Relief</div></div>
+      <div class="stat km"><div class="k">Committed</div><div class="v" id="s-km">0 km</div><div class="s">I ride every one</div></div>
+      <div class="stat km"><div class="k">Ridden</div><div class="v" id="s-ridden">0 km</div><div class="s">logged on the road</div></div>
+      <div class="stat bikes"><div class="k">Bikes funded</div><div class="v" id="s-bikes">0</div><div class="s">≈ €150 each</div></div>
+    </div>
+    <div class="progress">
+      <div class="bar-track"><div class="bar-fill" id="bar"></div></div>
+      <div class="bar-meta"><span id="bar-l">€0 raised</span><span id="bar-r">Goal €1,000</span></div>
+      <div class="updated" id="updated">Last update — Pre-departure</div>
+      <div class="goal-note" id="goal-note">If we reach the €1,000 goal, I open a new tier and keep riding — announced here when it happens.</div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">02 / How it works</span><h2>Early euros buy more road</h2></div>
+    <p class="lead" style="margin-bottom:34px">Donations unlock kilometres on a ladder. The first 1,000 km are the cheapest to fund,
+    and each further stretch costs a little more — so early support moves the needle fastest, and the distance can't
+    quietly run away beyond what I can ride before September.</p>
+
+    <div class="ladder">
+      <div class="rung"><div class="band">km 0–1,000</div><div class="rate">5<small> km/€</small></div><div class="cost">first €200</div></div>
+      <div class="rung"><div class="band">1,000–2,000</div><div class="rate">4<small> km/€</small></div><div class="cost">+€250</div></div>
+      <div class="rung"><div class="band">2,000–3,000</div><div class="rate">3<small> km/€</small></div><div class="cost">+€333</div></div>
+      <div class="rung"><div class="band">3,000–4,000</div><div class="rate">2<small> km/€</small></div><div class="cost">+€500</div></div>
+      <div class="rung"><div class="band">4,000 km +</div><div class="rate">1<small> km/€</small></div><div class="cost">+€1 / km</div></div>
+    </div>
+    <p class="ladder-note">Funding the full 5,000 km route works out to about €2,283 — roughly 15 Buffalo Bicycles.</p>
+
+    <div class="calc">
+      <h3>What would a donation unlock?</h3>
+      <p class="calc-sub">Drag to see how a total raised translates into kilometres I'd ride and bikes funded.</p>
+      <div class="calc-readout">
+        <div class="cell a"><div class="ck">Total raised</div><div class="cv" id="c-eur">€500</div></div>
+        <div class="cell b"><div class="ck">Kilometres I ride</div><div class="cv" id="c-km">2,500 km</div></div>
+        <div class="cell c"><div class="ck">Bikes funded</div><div class="cv" id="c-bikes">3</div></div>
+      </div>
+      <div class="slider-wrap">
+        <label><span>€0</span><span>€2,500</span></label>
+        <input type="range" id="calc-slider" min="0" max="2500" step="25" value="500">
+      </div>
+      <div class="tier-flag" id="tier-flag">At €500, the next euro buys <b>3 km</b>.</div>
+    </div>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">03 / The rules</span><h2>Clear for everyone, up front</h2></div>
+    <div class="rules">
+      <div class="rule"><div class="rn">01</div><h3>Every funded kilometre gets ridden</h3><p>Whatever the ladder funds, I ride — logged on a bike computer and tracked by satellite, so it's verifiable.</p></div>
+      <div class="rule"><div class="rn">02</div><h3>The ladder is fixed once I roll out</h3><p>The rates above are locked the day I leave. No quiet changes mid-ride to bands that have already been set.</p></div>
+      <div class="rule"><div class="rn">03</div><h3>If donations slow within a tier</h3><p>I keep the option to adjust the rate for the distance that's left, or to finish at the kilometre that's been funded — and I'll say so openly here if it happens.</p></div>
+      <div class="rule"><div class="rn">04</div><h3>The money never touches me</h3><p>You donate directly to World Bicycle Relief through their own page. I never handle a cent — I just ride for them.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="track">
+  <div class="wrap disc">
+    <div>
+      <span class="eyebrow">Offline, but trackable</span>
+      <h2>I'm going dark on purpose.</h2>
+      <p>A phone with no SIM card, so I'm offline the whole way. Navigation comes off a bike computer;
+      there are no daily posts and no scrolling.</p>
+      <p>The one thread to the outside world is a <b>Garmin inReach Mini 2</b> satellite communicator — it pings my
+      position over the Iridium network and carries an SOS button if anything goes badly wrong. That same signal
+      is what lets you follow the dot, and it's what makes every funded kilometre something you can verify rather
+      than take on trust.</p>
+    </div>
+    <div class="map-card">
+      <div id="map-slot"></div>
+      <div class="map-foot"><span>Live satellite track · inReach Mini 2</span><a id="map-link" href="#" target="_blank" rel="noopener">Open full map ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="wrap impact">
+    <div><div class="figure">~€150<span>funds one bicycle</span></div></div>
+    <div>
+      <p><b>World Bicycle Relief</b> builds rugged Buffalo Bicycles for people in rural regions, then gets them to
+      students, health workers, and farmers who'd otherwise be on foot for hours a day.</p>
+      <p>A student reaches a school that was too far. A nurse covers more villages. A farmer gets crops to market
+      before they spoil. <b>Every ~€150 raised here is, roughly, one of those bikes</b> — and the full route adds
+      up to about fifteen of them.</p>
+      <p>That's the asymmetry that made me pick them: the same machine carrying me across a continent for the fun
+      of it is, for someone else, the difference between a long walk and a short ride to class.</p>
+    </div>
+  </div>
+</section>
+
+<section id="donate" class="donate">
+  <div class="wrap">
+    <div class="donate-card">
+      <span class="eyebrow">Donate</span>
+      <h2>Buy a stretch of road.</h2>
+      <div class="rate-line" id="donate-rate">Right now, €1 funds 5 km of riding · straight to World Bicycle Relief</div>
+      <div class="presets" id="presets">
+        <button class="preset" data-amt="10">€10<span class="pk"></span></button>
+        <button class="preset" data-amt="25">€25<span class="pk"></span></button>
+        <button class="preset" data-amt="50">€50<span class="pk"></span></button>
+        <button class="preset" data-amt="100">€100<span class="pk"></span></button>
+        <button class="preset" data-amt="150">€150<span class="pk"></span></button>
+        <button class="preset" data-amt="250">€250<span class="pk"></span></button>
+      </div>
+      <div class="custom-row"><span class="cur">€</span><input type="number" id="custom" min="1" step="1" placeholder="Other amount" inputmode="numeric" aria-label="Custom amount"></div>
+      <div class="donate-summary" id="summary">Pick an amount — or type your own.</div>
+      <a href="#" id="donate-btn" class="btn btn-primary" target="_blank" rel="noopener">Donate at World Bicycle Relief</a>
+      <p class="donate-foot">You'll finish on World Bicycle Relief's own secure page, where the donation and any tax
+      receipt are handled directly by the charity.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="sig">5,000 km · for World Bicycle Relief</div>
+    <div class="meta">Departing <b>early July 2026</b> · home before term starts</div>
+  </div>
+</footer>
+
+<script>
+/* ════════════════════════════════════════════════════════════════
+   ▼▼▼  EDIT ONLY THIS BLOCK TO UPDATE THE PAGE  ▼▼▼
+   ════════════════════════════════════════════════════════════════ */
+
+  // ── ON THE ROAD YOU DON'T EDIT THIS FILE. ──
+  // Live numbers come from your Google Sheet (SHEET_CSV_URL below). You update
+  // the ride by changing cells in the Google Sheets app on your phone — no code,
+  // no re-upload. The three values just below are only FALLBACKS, shown if the
+  // sheet isn't set up yet or you're offline.
+  const TOTAL_DONATED = 0;                 // fallback: euros raised
+  const TOTAL_RIDDEN  = 0;                 // fallback: kilometres ridden
+  const LAST_UPDATE   = "Pre-departure";   // fallback: update label
+  const GOAL_EUR      = 1000;              // displayed goal (modest, beatable)
+
+  // Paste your Google Sheet's published CSV link here.
+  //   Sheet → File → Share → Publish to web → (your tab) → CSV → Publish → copy.
+  // Sheet layout (row 1 = headers, row 2 = the cells you edit on your phone):
+  //   A1: donated   B1: ridden   C1: updated
+  //   A2: 0         B2: 0        C2: Pre-departure
+  // Leave the PASTE_ placeholder until it's ready; the fallbacks above are used.
+  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTRbS_feh5hfTzmmCwURJxddop0I1YoQW0QZCvBK5AuimeJ7D4Qe-_GUqPCOgdzQ6KIJxQuO8YkxWuY/pub?output=csv";
+
+  // Your live World Bicycle Relief fundraiser page:
+  const DONATE_URL  = "https://fund.worldbicyclerelief.org/en-GB/project/aalborg-to-valencia-5-000-km";
+
+  // Your Garmin inReach MapShare link (e.g. https://share.garmin.com/peterride).
+  // Leave YOURNAME in it and the page shows a tidy placeholder instead of a
+  // broken map. Paste your real share.garmin.com/... link to go live.
+  const MAPSHARE_URL = "https://share.garmin.com/peterwbr";
+
+/* ════════════════════════════════════════════════════════════════
+   ▲▲▲  STOP EDITING HERE  ▲▲▲
+   ════════════════════════════════════════════════════════════════ */
+
+  const LADDER = [
+    { eur: 200,      kmPerEur: 5 },
+    { eur: 250,      kmPerEur: 4 },
+    { eur: 1000/3,   kmPerEur: 3 },
+    { eur: 500,      kmPerEur: 2 },
+    { eur: Infinity, kmPerEur: 1 }
+  ];
+  function kmFromEuros(e){
+    let km = 0, rem = e;
+    for (const b of LADDER){
+      const spend = Math.min(rem, b.eur);
+      km += spend * b.kmPerEur; rem -= spend;
+      if (rem <= 0) break;
+    }
+    return km;
+  }
+  function rateAtEuros(e){
+    let rem = e;
+    for (const b of LADDER){
+      if (b.eur === Infinity || rem < b.eur) return b.kmPerEur;
+      rem -= b.eur;
+    }
+    return 1;
+  }
+  const fmt = n => Math.round(n).toLocaleString('en-US');
+
+  // ---- current state (overridden by the sheet if configured) ----
+  let curDonated = TOTAL_DONATED;
+  let curRidden  = TOTAL_RIDDEN;
+  let curUpdated = LAST_UPDATE;
+  let amount = 0;
+
+  const presets = document.getElementById('presets');
+  const custom  = document.getElementById('custom');
+  const summary = document.getElementById('summary');
+  const btn     = document.getElementById('donate-btn');
+
+  function refreshSummary(){
+    const added = kmFromEuros(curDonated + amount) - kmFromEuros(curDonated);
+    summary.innerHTML = '<b>€' + fmt(amount) + '</b> = <b>' + fmt(added) + ' km</b> I\u2019ll ride';
+    btn.textContent = 'Donate €' + fmt(amount) + ' at World Bicycle Relief';
+  }
+
+  function render(){
+    const committed = kmFromEuros(curDonated);
+    document.getElementById('s-eur').textContent    = '€' + fmt(curDonated);
+    document.getElementById('s-km').textContent     = fmt(committed) + ' km';
+    document.getElementById('s-ridden').textContent = fmt(curRidden) + ' km';
+    document.getElementById('s-bikes').textContent  = Math.floor(curDonated / 150);
+    document.getElementById('updated').textContent  = 'Last update — ' + curUpdated;
+
+    const pct = Math.max(0, Math.min(100, (curDonated / GOAL_EUR) * 100));
+    document.getElementById('bar-l').textContent = '€' + fmt(curDonated) + ' raised';
+    document.getElementById('bar-r').textContent = 'Goal €' + fmt(GOAL_EUR);
+    document.getElementById('bar').style.width = pct + '%';
+    document.getElementById('goal-note').textContent = (curDonated >= GOAL_EUR)
+      ? 'Goal smashed — a new tier is open and I\u2019m riding further. Thank you.'
+      : 'If we reach the €' + fmt(GOAL_EUR) + ' goal, I open a new tier and keep riding — announced here when it happens.';
+
+    document.getElementById('donate-rate').textContent =
+      'Right now, €1 funds ' + rateAtEuros(curDonated) + ' km of riding · straight to World Bicycle Relief';
+    document.querySelectorAll('.preset').forEach(b=>{
+      const added = kmFromEuros(curDonated + (+b.dataset.amt)) - committed;
+      b.querySelector('.pk').textContent = '+' + fmt(added) + ' km';
+    });
+    if (amount > 0) refreshSummary();
+  }
+
+  // ---- calculator slider (independent of live data) ----
+  const slider = document.getElementById('calc-slider');
+  function renderCalc(v){
+    document.getElementById('c-eur').textContent   = '€' + fmt(v);
+    document.getElementById('c-km').textContent    = fmt(kmFromEuros(v)) + ' km';
+    document.getElementById('c-bikes').textContent = Math.floor(v / 150);
+    document.getElementById('tier-flag').innerHTML = 'At €' + fmt(v) + ', the next euro buys <b>' + rateAtEuros(v) + ' km</b>.';
+  }
+  slider.addEventListener('input', e => renderCalc(+e.target.value));
+  renderCalc(+slider.value);
+
+  // ---- donate card ----
+  function setAmount(val, fromPreset){
+    amount = (val && val > 0) ? Math.round(val) : 0;
+    if (fromPreset) custom.value = '';
+    document.querySelectorAll('.preset').forEach(b=>{
+      b.classList.toggle('active', fromPreset && +b.dataset.amt === amount);
+    });
+    if (amount > 0){ refreshSummary(); }
+    else { summary.textContent = 'Pick an amount — or type your own.'; btn.textContent = 'Donate at World Bicycle Relief'; }
+    const sep = DONATE_URL.includes('?') ? '&' : '?';
+    btn.href = amount > 0 ? DONATE_URL + sep + 'amount=' + amount : DONATE_URL;
+  }
+  presets.addEventListener('click', e=>{ const b = e.target.closest('.preset'); if (b) setAmount(+b.dataset.amt, true); });
+  custom.addEventListener('input', ()=> setAmount(+custom.value, false));
+
+  // ---- first paint with fallback values ----
+  render();
+  setAmount(0,false);
+
+  // ---- live data from the Google Sheet (if configured) ----
+  function parseCSV(text){
+    const rows=[]; let row=[], field='', q=false;
+    for (let i=0;i<text.length;i++){
+      const c=text[i];
+      if (q){ if (c==='"'){ if (text[i+1]==='"'){ field+='"'; i++; } else q=false; } else field+=c; }
+      else { if (c==='"') q=true; else if (c===',') { row.push(field); field=''; }
+             else if (c==='\n'){ row.push(field); rows.push(row); row=[]; field=''; }
+             else if (c==='\r'){} else field+=c; }
+    }
+    if (field.length||row.length){ row.push(field); rows.push(row); }
+    return rows;
+  }
+  if (SHEET_CSV_URL && SHEET_CSV_URL.indexOf('docs.google.com')!==-1){
+    fetch(SHEET_CSV_URL + (SHEET_CSV_URL.indexOf('?')!==-1?'&':'?') + '_=' + Date.now())
+      .then(r => r.ok ? r.text() : Promise.reject(r.status))
+      .then(text => {
+        const rows = parseCSV(text.replace(/^\uFEFF/,'').trim());
+        if (rows.length < 2) return;
+        const head = rows[0].map(h => h.trim().toLowerCase());
+        const vals = rows[1];
+        const get = name => { const i = head.indexOf(name); return i>=0 ? (vals[i]||'').trim() : ''; };
+        const d = parseFloat(get('donated').replace(/[^0-9.]/g,''));
+        const k = parseFloat(get('ridden').replace(/[^0-9.]/g,''));
+        const u = get('updated');
+        if (!isNaN(d)) curDonated = d;
+        if (!isNaN(k)) curRidden  = k;
+        if (u) curUpdated = u;
+        render();
+      })
+      .catch(()=>{ /* offline or not published yet — keep fallback values */ });
+  }
+
+  // ---- inReach map ----
+  const slot = document.getElementById('map-slot');
+  const mapLink = document.getElementById('map-link');
+  if (MAPSHARE_URL && !MAPSHARE_URL.includes('YOURNAME')){
+    const f = document.createElement('iframe');
+    f.src = MAPSHARE_URL; f.loading = 'lazy'; f.title = 'Live satellite track';
+    slot.appendChild(f);
+    mapLink.href = MAPSHARE_URL;
+  } else {
+    slot.innerHTML =
+      '<div class="map-ph"><div class="mp-ic">◉</div>' +
+      '<div class="mp-t">The dot goes live when I do</div>' +
+      '<div class="mp-s">Once I roll out in July, my satellite position appears here in near real time.</div></div>';
+    mapLink.style.visibility = 'hidden';
+  }
+</script>
+
+</body>
+</html>
